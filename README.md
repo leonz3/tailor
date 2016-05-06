@@ -51,6 +51,12 @@ tailor nginx -s quit
 ...
 ```
 
+## git
+
+proxy the order
+
+> tailor git [commands...]
+
 ## project
 
 set repo and lib path

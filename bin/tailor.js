@@ -8,9 +8,10 @@ const profile = require('../lib/profile');
 const project = require('../lib/project');
 const vagrant = require('../lib/vagrant');
 const nginx = require('../lib/nginx');
+const git = require('../lib/git');
 
 
-yargs
+let argv = yargs
 	.command(
 		'set',
 		'set the tailor',
@@ -54,9 +55,19 @@ yargs
 	.command(
 		'nginx',
 		'proxy the nginx',
+		{},
 		(argv) => {
 			let order = process.argv.splice(2).join(' ');
 			nginx(order);
+		}
+	)
+	.command(
+		'git',
+		'proxy the git',
+		{},
+		(argv) => {
+			let order = process.argv.splice(2).join(' ');
+			git(order);
 		}
 	)
 	.command(
@@ -162,3 +173,7 @@ yargs
 		}
 	)
 	.argv;
+
+if(typeof argv._[0] === 'undefined'){
+	yargs.showHelp();
+}
